@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `client_id` VARCHAR(50) NOT NULL,
+  `ip` VARCHAR(20) NOT NULL,
+  `client` JSON NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+);
