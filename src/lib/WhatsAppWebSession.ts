@@ -6,19 +6,20 @@ import FileManager from '../helpers/FileManager';
 export default class WhatsAppWebSession {
      declare public client: Client;
      constructor(sessionId: string, socket: Server) {
-          this.client = new Client({
-               puppeteer: {
-                    args: [
-                         '--no-sandbox',
-                         '--disable-setuid-sandbox'
-                    ],
-                    headless:'chrome'
-               },
-               authStrategy: new LocalAuth({
-                    clientId: sessionId,
-                    dataPath: `${process.cwd()}/.webjs_auth`
-               })
-          });
+         this.client = new Client({
+     puppeteer: {
+          args: [
+               '--no-sandbox',
+               '--disable-setuid-sandbox'
+          ],
+          headless: true, // o 'new' según la versión
+          userDataDir: `${process.cwd()}/chrome-profile/${sessionId}` // perfil único por sesión
+     },
+     authStrategy: new LocalAuth({
+          clientId: sessionId,
+          dataPath: `${process.cwd()}/.webjs_auth`
+     })
+});
 
           this.client.initialize();
 
